@@ -30,6 +30,10 @@ def _processPyVISA():
     rm = pyvisa.ResourceManager()
     resources = rm.list_resources()
     print('\tresources = {0}'.format(resources))
+    for resource in resources:
+        instrument = rm.open_resource(resource)
+        response = instrument.query('*IDN?')
+        print(response)
     print('<< {0}'.format(_processPyVISA.__name__))
     
 
